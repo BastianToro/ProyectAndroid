@@ -1,0 +1,73 @@
+package com.example.bastian.prueba1.views;
+
+import android.support.v4.app.FragmentActivity;
+import android.os.Bundle;
+
+import com.example.bastian.prueba1.R;
+import com.example.bastian.prueba1.controllers.Gets.verEventosGet;
+import com.example.bastian.prueba1.models.Lugar;
+import com.example.bastian.prueba1.utilities.PositionGPS;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+public class mapaUsuario extends FragmentActivity implements OnMapReadyCallback {
+
+    private GoogleMap mMap;
+    private double latitud;
+    private double longitud;
+    private double[] coord;
+    Lugar[] lugar_ver;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_mapa_usuario);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+        //new verEventosGet(mapaUsuario.this).execute("http://10.0.2.2:8080/EventoUsachJava/lugares");
+
+    }
+
+
+    /**
+     * Manipulates the map once available.
+     * This callback is triggered when the map is ready to be used.
+     * This is where we can add markers or lines, add listeners or move the camera. In this case,
+     * we just add a marker near Sydney, Australia.
+     * If Google Play services is not installed on the device, the user will be prompted to install
+     * it inside the SupportMapFragment. This method will only be triggered once the user has
+     * installed Google Play services and returned to the app.
+     */
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+
+
+        PositionGPS pos = new PositionGPS();
+        coord = pos.escogerPosicion(2);
+
+        new verEventosGet(mapaUsuario.this).execute("http://10.0.2.2:8080/EventoUsachJava/lugares/" +
+                "GPS?latitud="+coord[0]+"&longitud="+coord[1]);
+        //new verEventosGet(mapaUsuario.this).execute("http://10.0.2.2:8080/EventoUsachJava/lugares/GPS?latitud=-33.4499073&longitud=-70.6870482");
+        LatLng posicion = new LatLng(coord[0],coord[1]);
+        mMap.addMarker(new MarkerOptions().position(posicion).title("Posicion actual"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(posicion));
+        //LatLng[] post = new LatLng[lugar_ver.length];
+        //for(int i = 0;i<lugar_ver.length;i++){
+        //    post[i] = new LatLng(lugar_ver[i].getLatitud(),lugar_ver[i].getLongitud());
+        //    mMap.addMarker(new MarkerOptions().position(post[i]).title(lugar_ver[i].getNombre()));
+        //}
+    }
+
+    public void obtenerLugar(Lugar[] lugar){
+        this.lugar_ver = lugar;
+    }
+
+}

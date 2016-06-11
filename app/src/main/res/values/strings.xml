@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Eventos Usach</string>
+    <string name="label_list">Eventos disponibles</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_mapa_evento">Map</string>
+    <string name="title_activity_maps2">Map</string>
+    <string name="login">Ingresar</string>
+    <string name="ingrese_su_correo_usach">Ingrese su correo usach y su contraseña.</string>
+    <string name="mail"> Correo </string>
+    <string name="contraseña">Contrasena</string>
+    <string name="olvido_contraseña">Olvidé mi contraseña</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellido">Apellido</string>
+    <string name="carrera">Carrera</string>
+    <string name="bienvenidaRegistro">Para formar parte de EventosUsach regístrese en la aplicación.</string>
+    <string name="Registrarse">Registrarse</string>
+    <string name="logoRegistro">Registro</string>
+    <string name="bienvenidaPerfil">Bienvenido!</string>
+    <string name="recuperarPass">Recuperar Contraseña</string>
+    <string name="loginn">Log in</string>
+    <string name="eventoNuevo">Complete el formulario:</string>
+    <string name="titEvento">Titulo</string>
+    <string name="descripcionEvento">Descripción</string>
+    <string name="tipoEvento">Tipo Evento</string>
+    <string name="lugarEvento">Lugar</string>
+    <string name="fechaIn">Fecha</string>
+    <string name="horaIn">Hora inicio</string>
+    <string name="horaFin">Hora fin</string>
+    <string name="crearEvento">Crear</string>
+    <string name="misEventos">Mis Eventos</string>
+    <string name="strEventoNuevo">Nuevo Evento</string>
+    <string name="strMisEventos">Ver mis eventos</string>
+    <string name="emptyString" />
+    <string name="title_activity_mapa_usuario">Map</string>
+</resources>
