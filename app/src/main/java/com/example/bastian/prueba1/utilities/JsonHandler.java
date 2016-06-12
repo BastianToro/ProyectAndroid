@@ -58,11 +58,11 @@ public class JsonHandler {
         return null;
     }
 
-    public JSONObject setUsuarioEvento(int idEvento, int idUsuario, int tam){
+    public JSONObject setUsuarioEvento(int idEvento, int idUsuario){
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.accumulate("idEvento", idEvento);
-            jsonObject.accumulate("idEventoUsuario",tam);
+//            jsonObject.accumulate("idEventoUsuario",tam);
             jsonObject.accumulate("idUsuario", idUsuario);
 
             return jsonObject;
