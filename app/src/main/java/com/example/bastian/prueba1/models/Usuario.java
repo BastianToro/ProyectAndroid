@@ -24,6 +24,8 @@ public class Usuario implements Serializable {
     private String pass;
     private boolean esadministrador;
 
+    public Usuario(){}
+
     public Usuario(int id,int idEstado,String nombre,String apellido,String correo,String carrera,
                         String pass,boolean esadministrador){
         this.setId(id);

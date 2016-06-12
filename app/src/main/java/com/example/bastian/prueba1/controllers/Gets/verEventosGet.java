@@ -23,7 +23,7 @@ import java.util.Scanner;
  */
 public class verEventosGet extends AsyncTask<String, Void, String> {
     private Lugar[] lugar;
-    private mapaUsuario ac;
+    mapaUsuario ac = new mapaUsuario();
 
     public verEventosGet(mapaUsuario activity){
        this.ac = activity;
@@ -77,6 +77,6 @@ public class verEventosGet extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         getLugar(result);
-        ac.obtenerLugar(lugar);
+        ac.obtenerLugares_ac(lugar);
     }
 }

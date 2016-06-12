@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.bastian.prueba1.R;
 import com.example.bastian.prueba1.controllers.Gets.HttpGet;
@@ -22,8 +23,10 @@ public class misEventos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mis_eventos);
 
-        Bundle extras = getIntent().getExtras();
-        int[] idEventos = extras.getIntArray("numbers");
+        //Bundle extras = getIntent().getExtras();
+        //int[] idEventos = extras.getIntArray("numbers");
+        int[] idEventos = getIntent().getIntArrayExtra("numbers");
+        Toast.makeText(getApplicationContext(), "que pasa aquiii"+idEventos[0]+","+idEventos[1], Toast.LENGTH_SHORT).show();
 
         JsonHandler jh = new JsonHandler();
         HttpGet f=new HttpGet(this.getApplicationContext());// Obtenemos los eventos
@@ -36,12 +39,12 @@ public class misEventos extends AppCompatActivity {
         } catch (ExecutionException e){
             e.printStackTrace();
         }
-        Evento[] eventos_misEventos=jh.getEventos(item2,idEventos);
+        Evento[] eventos_m=jh.getEventos(item2,idEventos);
 
 
         ListView listaEventos = (ListView)findViewById(R.id.listaDeEventos);
 
-        AdapterEvento ae = new AdapterEvento(this,eventos_misEventos);
+        AdapterEvento ae = new AdapterEvento(this,eventos_m);
 
         listaEventos.setAdapter(ae);
 

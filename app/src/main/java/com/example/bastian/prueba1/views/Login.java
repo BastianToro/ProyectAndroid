@@ -56,6 +56,7 @@ public class Login extends AppCompatActivity {
                 if(userList[j].equals(usuario)){
                     j=userList.length;
                     Intent i = new Intent(this, perfilUsuario.class);
+                    i.putExtra("Username",corr);
                     startActivity(i);
                 }
                 else{
