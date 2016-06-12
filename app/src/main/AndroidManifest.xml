@@ -52,7 +52,9 @@
         <activity android:name=".views.misEventos" />
         <activity
             android:name=".views.mapaUsuario"
-            android:label="@string/title_activity_mapa_usuario"></activity>
+            android:label="@string/title_activity_mapa_usuario" />
+        <activity android:name=".views.listaEventosAsistir" />
+        <activity android:name=".views.descripcionEventoAsistir"></activity>
     </application>
 
 </manifest>

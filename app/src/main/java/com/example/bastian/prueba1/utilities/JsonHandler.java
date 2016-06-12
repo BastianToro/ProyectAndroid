@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.bastian.prueba1.models.Evento;
 import com.example.bastian.prueba1.models.Lugar;
+import com.example.bastian.prueba1.models.Tipo;
 import com.example.bastian.prueba1.models.Usuario;
 
 import org.json.JSONArray;
@@ -49,6 +50,21 @@ public class JsonHandler {
             jsonObject.accumulate("idTipoEstado",usuario.getIdEstado());
             jsonObject.accumulate("idUsuario",usuario.getId());
             jsonObject.accumulate("nombreUsuario",usuario.getNombre());
+            return jsonObject;
+
+        }catch(JSONException je){
+            Log.e("ERROR",this.getClass().toString()+ " - "+ je.getMessage());
+        }
+        return null;
+    }
+
+    public JSONObject setUsuarioEvento(int idEvento, int idUsuario, int tam){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.accumulate("idEvento", idEvento);
+            jsonObject.accumulate("idEventoUsuario",tam);
+            jsonObject.accumulate("idUsuario", idUsuario);
+
             return jsonObject;
 
         }catch(JSONException je){
@@ -234,5 +250,95 @@ public class JsonHandler {
 
         }return null;
 
-    } // fin getIdUsuario
+    } // fin getUsuario
+
+    public Evento[] getEventosdeLugares(String json,Lugar[] lugares){
+        try {
+            JSONArray ja = new JSONArray(json);
+            Evento[] evento = new Evento[ja.length()];
+            for (int i = 0; i < ja.length(); i++) {
+                JSONObject row = ja.getJSONObject(i);
+                Evento aux = new Evento();
+                if(buscareventosenlugares(row.getInt("idLugar"),lugares)) {
+                    aux.setId(row.getInt("idEvento"));
+                    aux.setTitulo(row.getString("tituloEvento"));
+                    aux.setInicio(row.getString("inicioEvento"));
+                    aux.setFin(row.getString("finEvento"));
+                    aux.setDescripcion(row.getString("descripcionEvento"));
+                    aux.setIdLugar(row.getInt("idLugar"));
+                    aux.setIdTipo(row.getInt("idTipo"));
+                    aux.setIdUsuario(row.getInt("idUsuario"));
+                    evento[i] = aux;
+                }
+            }
+            return evento;
+        } catch (JSONException e) {
+            Log.e("ERROR", this.getClass().toString() + " " + e.toString());
+        } return null;
+    }
+
+    public boolean buscareventosenlugares(int idEvento,Lugar[] lugar){
+        int tamLugar = lugar.length;
+        for(int i = 0; i < tamLugar;i++){
+            if(lugar[i].getId() == idEvento){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Lugar getLugarEvento(String json,int idLugar){
+        try{
+            JSONArray ja = new JSONArray(json);
+            Lugar aux = new Lugar();
+            for(int i=0; i<ja.length();i++){
+                JSONObject row = ja.getJSONObject(i);
+                if(row.getInt("idLugar") == idLugar) {
+                    aux.setId(row.getInt("idLugar"));
+                    aux.setLatitud(row.getDouble("latitud"));
+                    aux.setLongitud(row.getDouble("longitud"));
+                    aux.setNombre(row.getString("nombreLugar"));;
+                    return aux;
+                }
+            }
+
+        }catch(JSONException e){
+            Log.e("Error",this.getClass().toString());
+
+        }return null;
+
+    }
+
+    public Tipo getTipoEvento(String json, int idTipo){
+        try{
+            JSONArray ja = new JSONArray(json);
+            Tipo aux = new Tipo();
+            for(int i=0; i<ja.length();i++){
+                JSONObject row = ja.getJSONObject(i);
+                if(row.getInt("idTipo") == idTipo) {
+                    aux.setId(row.getInt("idTipo"));
+                    aux.setTipo(row.getString("tipoEvento"));
+                    aux.setDescripcion(row.getString("descripcionTipo"));;
+                    return aux;
+                }
+            }
+
+        }catch(JSONException e){
+            Log.e("Error",this.getClass().toString());
+
+        }return null;
+    }
+
+    public int getContadorEU(String json){
+        try{
+            JSONArray ja = new JSONArray(json);
+
+            return ja.length()+1;
+
+        }catch(JSONException e){
+            Log.e("Error",this.getClass().toString());
+
+        }return 0;
+    }
+
 }

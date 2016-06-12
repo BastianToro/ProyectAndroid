@@ -103,4 +103,11 @@ public class perfilUsuario extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void onclickEventoAsistir(View v){
+        Intent i = new Intent(this,listaEventosAsistir.class);
+        i.putExtra("idPosicion",idPosicion);
+        i.putExtra("idUser",usuario.getId());
+        startActivity(i);
+    }
+
 }

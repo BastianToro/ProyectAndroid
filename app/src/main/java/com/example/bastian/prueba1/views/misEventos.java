@@ -26,7 +26,7 @@ public class misEventos extends AppCompatActivity {
         //Bundle extras = getIntent().getExtras();
         //int[] idEventos = extras.getIntArray("numbers");
         int[] idEventos = getIntent().getIntArrayExtra("numbers");
-        Toast.makeText(getApplicationContext(), "que pasa aquiii"+idEventos[0]+","+idEventos[1], Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "que pasa aquiii"+idEventos[0]+","+idEventos[1], Toast.LENGTH_SHORT).show();
 
         JsonHandler jh = new JsonHandler();
         HttpGet f=new HttpGet(this.getApplicationContext());// Obtenemos los eventos
