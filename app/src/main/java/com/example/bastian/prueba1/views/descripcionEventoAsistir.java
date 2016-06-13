@@ -134,12 +134,12 @@ public class descripcionEventoAsistir extends AppCompatActivity {
 
         JSONObject jo = jh.setUsuarioEvento(evento.getId(),idUser);
 
-        Log.d("d",jo.toString());
+        //Log.d("d",jo.toString());
         new eventoUsuarioPost(descripcionEventoAsistir.this).execute("http://10.0.2.2:8080/EventoUsachJava/eventosusuarios",jo.toString());
 
 
         //Toast.makeText(getApplicationContext(), idUser+","+evento.getId()+","+tamEU, Toast.LENGTH_SHORT).show();
-        new eventoUsuarioPost(descripcionEventoAsistir.this).execute("http://10.0.2.2:8080/EventoUsachJava/eventosusuarios",jo.toString());
+        //new eventoUsuarioPost(descripcionEventoAsistir.this).execute("http://10.0.2.2:8080/EventoUsachJava/eventosusuarios",jo.toString());
         //String estado = doInBackground("http://10.0.2.2:8080/EventoUsachJava/eventosusuarios",jo.toString());
 
 
