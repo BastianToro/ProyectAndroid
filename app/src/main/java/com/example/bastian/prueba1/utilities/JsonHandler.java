@@ -62,11 +62,7 @@ public class JsonHandler {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.accumulate("idEvento", idEvento);
-<<<<<<< HEAD
-            //jsonObject.accumulate("idEventoUsuario",tam);
-=======
-//            jsonObject.accumulate("idEventoUsuario",tam);
->>>>>>> ce38cd3f367dc08895ea991f2a7e9583497c59b3
+
             jsonObject.accumulate("idUsuario", idUsuario);
 
             return jsonObject;

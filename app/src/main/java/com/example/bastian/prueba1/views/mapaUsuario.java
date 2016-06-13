@@ -86,7 +86,7 @@ public class mapaUsuario extends FragmentActivity implements OnMapReadyCallback 
 
         //new verEventosGet(mapaUsuario.this).execute("http://10.0.2.2:8080/EventoUsachJava/lugares/GPS?latitud=-33.4499073&longitud=-70.6870482");
         LatLng posicion = new LatLng(coord[0],coord[1]);
-        mMap.addMarker(new MarkerOptions().position(posicion).title("Posicion actual").snippet(""+coord[0]+"holaaa"+""));
+        mMap.addMarker(new MarkerOptions().position(posicion).title("Posicion actual"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(posicion));
         LatLng[] post = new LatLng[lugar_ver.length];
         for(int i = 0;i<lugar_ver.length;i++){
