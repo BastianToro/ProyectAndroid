@@ -13,7 +13,9 @@ public class Tipo implements Serializable {
     private String tipo;
     private String descripcion;
 
-    public void Tipo(int id,String tipo,String descripcion){
+    public Tipo(){}
+
+    public Tipo(int id,String tipo,String descripcion){
         this.setId(id);
         this.setTipo(tipo);
         this.setDescripcion(descripcion);

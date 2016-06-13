@@ -6,8 +6,13 @@ import android.util.Log;
 import com.example.bastian.prueba1.views.descripcionEventoAsistir;
 
 import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 
 /**
@@ -32,10 +37,10 @@ public class eventoUsuarioPost extends AsyncTask<String, Void, String> {
             connection.setRequestProperty("Content-Type", "application/json;charset=utf-8");
             connection.setConnectTimeout(10000);
             connection.setReadTimeout(10000);
-            connection.setFixedLengthStreamingMode(json.getBytes().length);
+            connection.setFixedLengthStreamingMode(parametros[1].getBytes().length);
             connection.connect();
             OutputStream os = new BufferedOutputStream(connection.getOutputStream());
-            os.write(json.getBytes());
+            os.write(parametros[1].getBytes());
             os.flush();
             return "OK";
         } catch (Exception e) {
@@ -43,6 +48,7 @@ public class eventoUsuarioPost extends AsyncTask<String, Void, String> {
         }
         return "ERROR";
     }
+
 
     @Override
     protected void onPostExecute(String result) {

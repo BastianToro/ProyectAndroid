@@ -100,6 +100,7 @@ public class perfilUsuario extends AppCompatActivity {
 
     public void onclickcreateEvent(View v){
         Intent i = new Intent(this,eventoNuevo.class);
+        i.putExtra("idUser",usuario.getId());
         startActivity(i);
     }
 

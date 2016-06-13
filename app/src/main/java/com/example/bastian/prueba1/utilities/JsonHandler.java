@@ -58,11 +58,11 @@ public class JsonHandler {
         return null;
     }
 
-    public JSONObject setUsuarioEvento(int idEvento, int idUsuario, int tam){
+    public JSONObject setUsuarioEvento(int idEvento, int idUsuario){
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.accumulate("idEvento", idEvento);
-            jsonObject.accumulate("idEventoUsuario",tam);
+            //jsonObject.accumulate("idEventoUsuario",tam);
             jsonObject.accumulate("idUsuario", idUsuario);
 
             return jsonObject;
@@ -327,6 +327,27 @@ public class JsonHandler {
             Log.e("Error",this.getClass().toString());
 
         }return null;
+    }
+
+    public Tipo[] getTipos(String json){
+        try {
+            JSONArray ja = new JSONArray(json);
+            Tipo[] tipo = new Tipo[ja.length()];
+            int largo = ja.length()-1;
+            for (int i = 0; i < ja.length(); i++) {
+                JSONObject row = ja.getJSONObject(largo);
+                Tipo aux = new Tipo();
+                aux.setId(row.getInt("idTipo"));
+                aux.setTipo(row.getString("tipoEvento"));
+                aux.setDescripcion(row.getString("descripcionTipo"));
+                tipo[i] = aux;
+                largo--;
+            }
+            return tipo;
+        } catch (JSONException e) {
+            Log.e("ERROR", this.getClass().toString() + " " + e.toString());
+            return null;
+        }
     }
 
     public int getContadorEU(String json){

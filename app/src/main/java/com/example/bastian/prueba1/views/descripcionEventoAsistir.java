@@ -2,6 +2,7 @@ package com.example.bastian.prueba1.views;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,15 @@ import com.example.bastian.prueba1.utilities.JsonHandler;
 
 import org.json.JSONObject;
 
+import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
 public class descripcionEventoAsistir extends AppCompatActivity {
@@ -122,9 +132,11 @@ public class descripcionEventoAsistir extends AppCompatActivity {
         tamEU = jh.getContadorEU(item2);
         //Toast.makeText(getApplicationContext(), "que pasa aquiii"+tamEU, Toast.LENGTH_SHORT).show();
 
-        JSONObject jo = jh.setUsuarioEvento(idUser,evento.getId(),tamEU);
-        new eventoUsuarioPost(descripcionEventoAsistir.this).execute("http://10.0.2.2:8080/EventoUsachJava/eventosusuarios",jo.toString());
+        JSONObject jo = jh.setUsuarioEvento(evento.getId(),idUser);
 
+        //Toast.makeText(getApplicationContext(), idUser+","+evento.getId()+","+tamEU, Toast.LENGTH_SHORT).show();
+        new eventoUsuarioPost(descripcionEventoAsistir.this).execute("http://10.0.2.2:8080/EventoUsachJava/eventosusuarios",jo.toString());
+        //String estado = doInBackground("http://10.0.2.2:8080/EventoUsachJava/eventosusuarios",jo.toString());
 
 
     }
