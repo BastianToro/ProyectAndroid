@@ -129,10 +129,15 @@ public class descripcionEventoAsistir extends AppCompatActivity {
         }
 
         JsonHandler jh = new JsonHandler();
-        tamEU = jh.getContadorEU(item2);
+//        tamEU = jh.getContadorEU(item2);
         //Toast.makeText(getApplicationContext(), "que pasa aquiii"+tamEU, Toast.LENGTH_SHORT).show();
 
         JSONObject jo = jh.setUsuarioEvento(evento.getId(),idUser);
+<<<<<<< HEAD
+=======
+        Log.d("d",jo.toString());
+        new eventoUsuarioPost(descripcionEventoAsistir.this).execute("http://10.0.2.2:8080/EventoUsachJava/eventosusuarios",jo.toString());
+>>>>>>> ce38cd3f367dc08895ea991f2a7e9583497c59b3
 
         //Toast.makeText(getApplicationContext(), idUser+","+evento.getId()+","+tamEU, Toast.LENGTH_SHORT).show();
         new eventoUsuarioPost(descripcionEventoAsistir.this).execute("http://10.0.2.2:8080/EventoUsachJava/eventosusuarios",jo.toString());
