@@ -26,11 +26,12 @@ public class Evento implements Serializable {
     private int idLugar;
     private int idTipo;
     private int idUsuario;
+    private boolean estadoEvento;
 
     public Evento(){}
 
     public Evento(int id,String titulo,String inicio,String fin,String fecha,String descripcion,
-                       int lugar,int tipo,int usuario){
+                       int lugar,int tipo,int usuario, boolean estado){
         this.setId(id);
         this.setTitulo(titulo);
         this.setInicio(inicio);
@@ -40,6 +41,7 @@ public class Evento implements Serializable {
         this.setIdLugar(lugar);
         this.setIdTipo(tipo);
         this.setIdUsuario(usuario);
+        this.setEstadoEvento(estado);
     }
 
     public int getId() {
@@ -113,4 +115,8 @@ public class Evento implements Serializable {
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
+
+    public boolean getEstadoEvento(){ return estadoEvento; }
+
+    public void setEstadoEvento(boolean estadoEvento) { this.estadoEvento = estadoEvento; }
 }

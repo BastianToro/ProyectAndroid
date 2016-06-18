@@ -268,6 +268,7 @@ public class JsonHandler {
                     aux.setIdLugar(row.getInt("idLugar"));
                     aux.setIdTipo(row.getInt("idTipo"));
                     aux.setIdUsuario(row.getInt("idUsuario"));
+                    aux.setEstadoEvento(row.getBoolean("habilitado"));
                     evento[i] = aux;
                 }
             }

@@ -153,7 +153,7 @@ public class eventoNuevo extends AppCompatActivity {
 
         evento = new Evento(idEvento,titulo.getText().toString(),hora_inicio.getText().toString(),
                 hora_final.getText().toString(),fecha.getText().toString(),descripcion.getText().toString()
-                ,idLugar,idTipo,idUser);
+                ,idLugar,idTipo,idUser,false);
     }
 
     public boolean comprobarCamposVacios(){

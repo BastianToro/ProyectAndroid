@@ -3,6 +3,7 @@ package com.example.bastian.prueba1.views;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -71,6 +72,7 @@ public class listaEventosAsistir extends AppCompatActivity {
         } catch (ExecutionException e){
             e.printStackTrace();
         }
+        Log.d("d",item);
         eventos = jh.getEventosdeLugares(item,lugar);
 
         //desplegar eventos en la listview
