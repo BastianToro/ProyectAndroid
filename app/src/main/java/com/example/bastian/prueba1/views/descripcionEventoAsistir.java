@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.example.bastian.prueba1.R;
 import com.example.bastian.prueba1.controllers.Gets.HttpGet;
+import com.example.bastian.prueba1.controllers.Post.PreferenciaUsuarioPost;
 import com.example.bastian.prueba1.controllers.Post.eventoUsuarioPost;
 import com.example.bastian.prueba1.models.Evento;
 import com.example.bastian.prueba1.models.Lugar;
@@ -114,6 +115,25 @@ public class descripcionEventoAsistir extends AppCompatActivity {
         hora_fin = sep2[0];
     }
 
+    public void onclickAgregarPreferencias(View v){
+        URL_GET = "http://10.0.2.2:8080/EventoUsachJava/preferencias";
+        HttpGet d=new HttpGet(this.getApplicationContext());// Obtenemos los eventos
+        d.execute(URL_GET);
+        String  item2= null;
+        try{
+            item2 = d.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e){
+            e.printStackTrace();
+        }
+
+        JsonHandler jh = new JsonHandler();
+        JSONObject jo = jh.setPreferenciaUsuario(evento.getIdTipo(),idUser);
+        //Toast.makeText(getApplicationContext(), evento.getIdTipo()+"que pasa aquiii"+idUser, Toast.LENGTH_SHORT).show();
+        new eventoUsuarioPost(descripcionEventoAsistir.this).execute("http://10.0.2.2:8080/EventoUsachJava/preferencias",jo.toString());
+    }
+
     public void onclickAsistirAceptar(View v){
         //obtener el id del evento y el id del usuario y hacer un httppost en eventosusuarios.
         URL_GET = "http://10.0.2.2:8080/EventoUsachJava/eventosusuarios";
@@ -129,6 +149,7 @@ public class descripcionEventoAsistir extends AppCompatActivity {
         }
 
         JsonHandler jh = new JsonHandler();
+
 //        tamEU = jh.getContadorEU(item2);
         //Toast.makeText(getApplicationContext(), "que pasa aquiii"+tamEU, Toast.LENGTH_SHORT).show();
 

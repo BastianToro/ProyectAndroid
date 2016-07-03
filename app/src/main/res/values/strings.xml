@@ -33,4 +33,5 @@
     <string name="strMisEventos">Ver mis eventos</string>
     <string name="emptyString" />
     <string name="title_activity_mapa_usuario">Map</string>
+    <string name="editarelperfil"> Escriba los campos que desea editar</string>
 </resources>

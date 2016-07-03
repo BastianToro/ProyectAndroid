@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.bastian.prueba1.views.perfilUsuario">
+    tools:context="com.example.bastian.prueba1.views.perfilUsuario"
+    android:background="@drawable/fons5">
 
     <TextView
         android:layout_width="wrap_content"
@@ -26,19 +27,19 @@
         android:text="Crear Evento"
         android:onClick="onclickcreateEvent"
         android:id="@+id/botonCrearEvento"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_above="@+id/btnMisEventos"
+        android:layout_alignLeft="@+id/btnMisEventos"
+        android:layout_alignStart="@+id/btnMisEventos" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/misEventos"
         android:id="@+id/btnMisEventos"
+        android:onClick="onButtonClick"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="onButtonClick"/>
+        android:layout_alignParentEnd="true" />
 
     <!-- Esta parte es el textview para poner el correo electrónico del usuario en la vista de perfil de usuario.-->
     <TextView
@@ -59,9 +60,9 @@
         android:onClick="onclickverEventos"
         android:text="Ver eventos cercanos"
         android:id="@+id/verEventos"
-        android:layout_marginTop="45dp"
-        android:layout_below="@+id/botonCrearEvento"
-        android:layout_centerHorizontal="true" />
+        android:layout_above="@+id/asistirEvento"
+        android:layout_alignLeft="@+id/asistirEvento"
+        android:layout_alignStart="@+id/asistirEvento" />
 
     <Button
         android:layout_width="wrap_content"
@@ -69,8 +70,76 @@
         android:text="Asistir a Evento"
         android:onClick="onclickEventoAsistir"
         android:id="@+id/asistirEvento"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_above="@+id/botonCrearEvento"
+        android:layout_alignLeft="@+id/botonCrearEvento"
+        android:layout_alignStart="@+id/botonCrearEvento" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar perfil"
+        android:onClick="onclickEditarPerfil"
+        android:id="@+id/buttoneditoperfil"
+        android:layout_below="@+id/botonCrearEvento"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log out/"
+        android:id="@+id/textView8"
+        android:layout_alignParentTop="true"
+        android:textColor="#2c4cf8"
+        android:textSize="@dimen/abc_action_bar_icon_vertical_padding_material"
+        android:textStyle="bold"
+        android:onClick="onclickCerrarSesion"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/textView9" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Deshabilitar cuenta"
+        android:id="@+id/textView9"
+        android:textColor="#2c4cf8"
+        android:textSize="@dimen/abc_action_bar_icon_vertical_padding_material"
+        android:textStyle="bold"
+        android:onClick=""
+        android:layout_alignBottom="@+id/TVusername"
+        android:layout_alignRight="@+id/textView8"
+        android:layout_alignEnd="@+id/textView8" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Sugerencia de Eventos"
+        android:id="@+id/textView10"
+        android:layout_marginTop="35dp"
+        android:layout_below="@+id/TVusername"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textView10"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/buttoneditoperfil"
+        android:layout_alignRight="@+id/textView10"
+        android:layout_alignEnd="@+id/textView10">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/listaSugerencia"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
 
 
 </RelativeLayout>

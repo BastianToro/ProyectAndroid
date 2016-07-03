@@ -6,14 +6,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bastian.prueba1.MainActivity;
 import com.example.bastian.prueba1.R;
 import com.example.bastian.prueba1.controllers.Gets.HttpGet;
 import com.example.bastian.prueba1.models.Evento;
 import com.example.bastian.prueba1.models.Lugar;
 import com.example.bastian.prueba1.models.Usuario;
+import com.example.bastian.prueba1.services.AdapterEvento;
 import com.example.bastian.prueba1.utilities.JsonHandler;
 
 import java.util.concurrent.ExecutionException;
@@ -26,6 +30,10 @@ public class perfilUsuario extends AppCompatActivity {
     private String username;
     private Usuario usuario; //usuario actual
     private int idPosicion;
+    private ListView listaSugerencias;
+    private String URL_GET2;
+    private int[] idTipos;
+    private Evento[] sug_eventos;
 
 
     @Override
@@ -52,6 +60,51 @@ public class perfilUsuario extends AppCompatActivity {
 
         idPosicion = 1; //posicion por default. Sin GPS
 
+        //Sugerencia de eventos.
+        listaSugerencias = (ListView) findViewById(R.id.listaSugerencia);
+
+        URL_GET2 = "http://10.0.2.2:8080/EventoUsachJava/preferencias";
+        HttpGet b=new HttpGet(this.getApplicationContext());
+        b.execute(URL_GET2);
+        String  item2= null;
+        try{
+            item2 = b.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e){
+            e.printStackTrace();
+        }
+        idTipos = jh.getPreferencias(item2,usuario.getId());
+
+        URL_GET2 = "http://10.0.2.2:8080/EventoUsachJava/eventos";
+        HttpGet c=new HttpGet(this.getApplicationContext());
+        c.execute(URL_GET2);
+        String  item3= null;
+        try{
+            item3 = c.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e){
+            e.printStackTrace();
+        }
+        sug_eventos = jh.getEventoPreferencias(item3,idTipos);
+        AdapterEvento ae = new AdapterEvento(this,sug_eventos);
+
+        listaSugerencias.setAdapter(ae);
+
+        listaSugerencias.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //evento[position].getIdLugar()
+                //Toast.makeText(MainActivity.this,"HOLAA", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(perfilUsuario.this, descripcionEventoAsistir.class);
+                i.putExtra("evento",sug_eventos[position]);
+                i.putExtra("idUser",usuario.getId());
+                startActivity(i);
+
+
+            }
+        });
     }
 
 
@@ -108,6 +161,15 @@ public class perfilUsuario extends AppCompatActivity {
         Intent i = new Intent(this,listaEventosAsistir.class);
         i.putExtra("idPosicion",idPosicion);
         i.putExtra("idUser",usuario.getId());
+        startActivity(i);
+    }
+    public void onclickEditarPerfil(View v){
+        Intent i = new Intent(this,editarPerfil.class);
+        startActivity(i);
+    }
+
+    public void onclickCerrarSesion(View v){
+        Intent i = new Intent(this,sesionCerrada.class);
         startActivity(i);
     }
 

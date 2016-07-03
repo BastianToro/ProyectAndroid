@@ -45,16 +45,27 @@
         <activity
             android:name=".views.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".views.Login" />
-        <activity android:name=".views.perfilUsuario" />
-        <activity android:name=".views.Registro" />
-        <activity android:name=".views.eventoNuevo" />
-        <activity android:name=".views.misEventos" />
+        <activity android:name=".views.Login"
+            android:label="Log in"/>
+        <activity android:name=".views.perfilUsuario"
+            android:label="Perfil"/>
+        <activity android:name=".views.Registro"
+            android:label="Registro"/>
+        <activity android:name=".views.eventoNuevo"
+            android:label="Registrarse"/>
+        <activity android:name=".views.misEventos"
+            android:label="Mis Eventos"/>
         <activity
             android:name=".views.mapaUsuario"
             android:label="@string/title_activity_mapa_usuario" />
-        <activity android:name=".views.listaEventosAsistir" />
-        <activity android:name=".views.descripcionEventoAsistir"></activity>
+        <activity android:name=".views.listaEventosAsistir"
+            android:label="Escoger Evento"/>
+        <activity android:name=".views.descripcionEventoAsistir"
+            android:label="Descripción Evento"/>
+        <activity android:name=".views.editarPerfil"
+            android:label="Editar perfil"/>
+        <activity android:name=".views.sesionCerrada"
+            android:label="Log out"></activity>
     </application>
 
 </manifest>

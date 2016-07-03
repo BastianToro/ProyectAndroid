@@ -73,6 +73,22 @@ public class JsonHandler {
         return null;
     }
 
+    public JSONObject setPreferenciaUsuario(int tipoEvento, int idUsuario){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            //jsonObject.accumulate("idPreferencia", 10);
+            jsonObject.accumulate("idTipo", tipoEvento);
+
+            jsonObject.accumulate("idUsuario", idUsuario);
+
+            return jsonObject;
+
+        }catch(JSONException je){
+            Log.e("ERROR",this.getClass().toString()+ " - "+ je.getMessage());
+        }
+        return null;
+    }
+
     public JSONObject setEvento(Evento evento){
         JSONObject jsonObject = new JSONObject();
         String horainicio = parsearFecha(evento.getFecha(),evento.getInicio());
@@ -363,4 +379,84 @@ public class JsonHandler {
         }return 0;
     }
 
+    public int[] getPreferencias(String json, int idUsuario){
+        try {
+            JSONArray ja = new JSONArray(json);
+
+            int tam = 0;
+            int largo = ja.length()-1;
+            for (int i = 0; i < ja.length(); i++) {
+                JSONObject row = ja.getJSONObject(largo);
+
+                if(row.getInt("idUsuario") == idUsuario){
+                    tam++;
+                    largo--;
+                }
+                else{
+                    largo--;
+                }
+            }
+            int[] preferencias = new int[tam];
+            largo = ja.length()-1;
+            for (int i = 0; i < ja.length(); i++) {
+                JSONObject row = ja.getJSONObject(largo);
+
+                if(row.getInt("idUsuario") == idUsuario){
+                    preferencias[i] = row.getInt("idTipo");
+                    largo--;
+                }
+                else{
+                    largo--;
+                }
+            }
+            return preferencias;
+        } catch (JSONException e) {
+            Log.e("ERROR", this.getClass().toString() + " " + e.toString());
+            return null;
+        }
+    }
+
+    public Evento[] getEventoPreferencias(String json,int[] prefer){
+        try {
+            JSONArray ja = new JSONArray(json);
+
+            int largo = ja.length()-1;
+            int tam = 0;
+            for (int i = 0; i < ja.length(); i++) {
+                JSONObject row = ja.getJSONObject(largo);
+                if(buscarElemento(row.getInt("idTipo"),prefer)){
+                    tam++;
+                    largo--;
+                }
+                else{
+                    largo--;
+                }
+            }
+            Evento[] eventos = new Evento[tam];
+            int cont = 0;
+            largo = ja.length()-1;
+            for (int i = 0; i < ja.length(); i++) {
+                JSONObject row = ja.getJSONObject(largo);
+                Evento aux = new Evento();
+                if(buscarElemento(row.getInt("idTipo"),prefer)){
+                    aux.setId(row.getInt("idEvento"));
+                    aux.setTitulo(row.getString("tituloEvento"));
+                    aux.setInicio(row.getString("inicioEvento"));
+                    aux.setFin(row.getString("finEvento"));
+                    aux.setDescripcion(row.getString("descripcionEvento"));
+                    aux.setIdLugar(row.getInt("idLugar"));
+                    aux.setIdTipo(row.getInt("idTipo"));
+                    aux.setIdUsuario(row.getInt("idUsuario"));
+                    aux.setEstadoEvento(row.getBoolean("habilitado"));
+                    eventos[cont] = aux;
+                    largo--;
+                }
+                largo--;
+            }
+            return eventos;
+        } catch (JSONException e) {
+            Log.e("ERROR", this.getClass().toString() + " " + e.toString());
+            return null;
+        }
+    }
 }
