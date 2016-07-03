@@ -170,6 +170,7 @@ public class perfilUsuario extends AppCompatActivity {
     }
     public void onclickEditarPerfil(View v){
         Intent i = new Intent(this,editarPerfil.class);
+        i.putExtra("Username",usuario.getCorreo());
         startActivity(i);
     }
 
