@@ -14,6 +14,13 @@ public class sesionCerrada extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sesion_cerrada);
+        try {
+            Thread.sleep(2000);
+            Intent i = new Intent(this,MainActivity.class);
+            startActivity(i);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void onclickvolverInicio(View v){

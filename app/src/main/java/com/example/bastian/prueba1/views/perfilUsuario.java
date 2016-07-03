@@ -1,6 +1,8 @@
 package com.example.bastian.prueba1.views;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,11 +16,14 @@ import android.widget.Toast;
 import com.example.bastian.prueba1.MainActivity;
 import com.example.bastian.prueba1.R;
 import com.example.bastian.prueba1.controllers.Gets.HttpGet;
+import com.example.bastian.prueba1.controllers.Puts.DeshabilitarPut;
 import com.example.bastian.prueba1.models.Evento;
 import com.example.bastian.prueba1.models.Lugar;
 import com.example.bastian.prueba1.models.Usuario;
 import com.example.bastian.prueba1.services.AdapterEvento;
 import com.example.bastian.prueba1.utilities.JsonHandler;
+
+import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
 
@@ -169,8 +174,49 @@ public class perfilUsuario extends AppCompatActivity {
     }
 
     public void onclickCerrarSesion(View v){
-        Intent i = new Intent(this,sesionCerrada.class);
-        startActivity(i);
+        new AlertDialog.Builder(this)
+                .setTitle("Cerrar Sesión")
+                .setMessage("¿Estas seguro en cerrar tu sesión?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent i = new Intent(perfilUsuario.this,sesionCerrada.class);
+                        startActivity(i);
+                            }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+
     }
 
+    public void onclickDeshabilitarCuenta(View v){
+
+        new AlertDialog.Builder(this)
+                .setTitle("Deshabilitar cuenta")
+                .setMessage("¿Estas seguro en deshabilitar tu cuenta?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        JsonHandler jh = new JsonHandler();
+                        JSONObject jo = jh.setUsuarioDeshabilitado(usuario);
+                        new DeshabilitarPut(perfilUsuario.this).execute("http://10.0.2.2:8080/EventoUsachJava/usuarios",jo.toString());
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
+
+    public void mensajeExito(){
+        Toast.makeText(getApplicationContext(), "Tu cuenta a sido desactivada.", Toast.LENGTH_SHORT).show();}
+
+    public void mensajeFracaso(){
+        Toast.makeText(getApplicationContext(), "Operacioon fallida", Toast.LENGTH_SHORT).show();}
 }

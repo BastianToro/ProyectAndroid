@@ -459,4 +459,25 @@ public class JsonHandler {
             return null;
         }
     }
+
+
+    public JSONObject setUsuarioDeshabilitado(Usuario usuario) {
+        // build jsonObject
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.accumulate("administrador",usuario.isEsadministrador());
+            jsonObject.accumulate("apellidoUsuario", usuario.getApellido());
+            jsonObject.accumulate("carreraUsuario",usuario.getCarrera());
+            jsonObject.accumulate("contrasenhaUsuario",usuario.getPass());
+            jsonObject.accumulate("correoUsuario",usuario.getCorreo());
+            jsonObject.accumulate("idTipoEstado",2);
+            jsonObject.accumulate("idUsuario",usuario.getId());
+            jsonObject.accumulate("nombreUsuario",usuario.getNombre());
+            return jsonObject;
+
+        }catch(JSONException je){
+            Log.e("ERROR",this.getClass().toString()+ " - "+ je.getMessage());
+        }
+        return null;
+    }
 }

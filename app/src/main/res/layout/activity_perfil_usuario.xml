@@ -107,7 +107,7 @@
         android:textColor="#2c4cf8"
         android:textSize="@dimen/abc_action_bar_icon_vertical_padding_material"
         android:textStyle="bold"
-        android:onClick=""
+        android:onClick="onclickDeshabilitarCuenta"
         android:layout_alignBottom="@+id/TVusername"
         android:layout_alignRight="@+id/textView8"
         android:layout_alignEnd="@+id/textView8" />
