@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.bastian.prueba1.R;
 import com.example.bastian.prueba1.controllers.Gets.HttpGet;
@@ -54,14 +55,19 @@ public class Login extends AppCompatActivity {
             int j=0;
             while(j<userList.length){
                 if(userList[j].equals(usuario)){
-                    j=userList.length;
+
                     Intent i = new Intent(this, perfilUsuario.class);
                     i.putExtra("Username",corr);
                     startActivity(i);
+                    break;
                 }
                 else{
                     j++;
                 }
+            }
+            if(j == userList.length) {
+                Toast.makeText(getApplicationContext(), "Usuario no registrado o contraseña mal ingresada. Por favor verifique datos", Toast.LENGTH_SHORT).show();
+                contrasena.setText("");
             }
         }
     }

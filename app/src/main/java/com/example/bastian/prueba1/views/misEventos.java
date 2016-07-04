@@ -39,10 +39,10 @@ public class misEventos extends AppCompatActivity {
         } catch (ExecutionException e){
             e.printStackTrace();
         }
-        Evento[] eventos_m=jh.getEventos(item2,idEventos);
+        Evento[] eventos_m =jh.getEventos(item2,idEventos);
 
-
-        ListView listaEventos = (ListView)findViewById(R.id.listaDeEventos);
+        //Toast.makeText(getApplicationContext(), "que pasa aquiii"+eventos_m[0].getTitulo(), Toast.LENGTH_SHORT).show();
+        ListView listaEventos = (ListView)findViewById(R.id.listView2);
 
         AdapterEvento ae = new AdapterEvento(this,eventos_m);
 
