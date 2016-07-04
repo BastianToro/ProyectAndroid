@@ -71,7 +71,7 @@ public class perfilUsuario extends AppCompatActivity {
         URL_GET2 = "http://10.0.2.2:8080/EventoUsachJava/preferencias";
         HttpGet b=new HttpGet(this.getApplicationContext());
         b.execute(URL_GET2);
-        String  item2= null;
+        String item2= null;
         try{
             item2 = b.get();
         } catch (InterruptedException e) {

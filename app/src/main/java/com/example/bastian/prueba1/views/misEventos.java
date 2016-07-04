@@ -42,7 +42,7 @@ public class misEventos extends AppCompatActivity {
         Evento[] eventos_m =jh.getEventos(item2,idEventos);
 
         //Toast.makeText(getApplicationContext(), "que pasa aquiii"+eventos_m[0].getTitulo(), Toast.LENGTH_SHORT).show();
-        ListView listaEventos = (ListView)findViewById(R.id.listView2);
+        ListView listaEventos = (ListView)findViewById(R.id.listaDeEventos);
 
         AdapterEvento ae = new AdapterEvento(this,eventos_m);
 

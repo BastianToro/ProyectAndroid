@@ -383,7 +383,7 @@ public class JsonHandler {
         try {
             JSONArray ja = new JSONArray(json);
 
-            int tam = 0;
+            int tam = 0,j=0;
             int largo = ja.length()-1;
             for (int i = 0; i < ja.length(); i++) {
                 JSONObject row = ja.getJSONObject(largo);
@@ -402,7 +402,7 @@ public class JsonHandler {
                 JSONObject row = ja.getJSONObject(largo);
 
                 if(row.getInt("idUsuario") == idUsuario){
-                    preferencias[i] = row.getInt("idTipo");
+                    preferencias[j++] = row.getInt("idTipo");
                     largo--;
                 }
                 else{
